@@ -54,4 +54,14 @@ public class DatabaseConnection {
 		
 		return false;
 	}
+	
+	public boolean hasPointRegistered(int id) {
+		for (Timecard timecard : timecards) {
+			if (timecard.getId() == id) {
+				return timecard.getType() == 1;
+			}
+		}
+		
+		return false;
+	}
 }

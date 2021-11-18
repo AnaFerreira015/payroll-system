@@ -68,9 +68,15 @@ public class Main {
 
 				timecard.setId(id);
 				
+				
+				
 				do {
 					System.out.println("Informe se o ponto é de entrada (1) ou saída (2): ");
 					pointType = input.nextInt();
+					
+					if (((!databaseConnection.hasPointRegistered(id)) && (pointType != 1))) {
+						System.out.println("É necessário um ponto de entrada antes de registrar o ponto de saída!");
+					}
 				} while ((pointType != 1) && (pointType != 2));
 				
 				timecard.setType(pointType);
