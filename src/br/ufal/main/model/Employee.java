@@ -2,8 +2,8 @@ package br.ufal.main.model;
 
 public class Employee {
 
-	private String name, address, type;
-	private int id;
+	private String name, address; 
+	private int id, type;
 	
 	public String getName() {
 		return name;
@@ -17,10 +17,10 @@ public class Employee {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getType() {
+	public int getType() {
 		return type;
 	}
-	public void setType(String type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 	public int getId() {
@@ -32,7 +32,7 @@ public class Employee {
 	
 	@Override
 	public String toString() {
-		return "Name: " + name + "\nAddress: " + address + "\nType: " + type + "\n***********";
+		return "Name: " + name + "\nAddress: " + address + "\nType: " + type + "\nId: " + id + "\n***********";
 	}	
 	
 }
