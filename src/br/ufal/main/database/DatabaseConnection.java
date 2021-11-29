@@ -45,16 +45,6 @@ public class DatabaseConnection {
 		this.timecards.add(timecard);
 	}
 	
-	public boolean isHourly(int id) {
-		for (Employee employee : employees) {
-			if (employee.getId() == id) {
-				return employee.getType() == 1;
-			}
-		}
-		
-		return false;
-	}
-	
 	public boolean hasPointRegistered(int id) {
 		for (Timecard timecard : timecards) {
 			if (timecard.getId() == id) {
@@ -63,5 +53,9 @@ public class DatabaseConnection {
 		}
 		
 		return false;
+	}
+	
+	public ArrayList<Timecard> getTimecards() {
+		return this.timecards;
 	}
 }

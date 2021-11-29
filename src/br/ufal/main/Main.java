@@ -12,7 +12,6 @@ public class Main {
 	public static void main(String[] args) {
 		DatabaseConnection databaseConnection = new DatabaseConnection();
 		Scanner input = new Scanner(System.in);
-		Timecard timecard = new Timecard();
 		int id, pointType, employeeType;
 		
 		int option;
@@ -38,7 +37,6 @@ public class Main {
 				
 				System.out.println("Informe o tipo do empregado: ");
 				System.out.println("\t(1) Hourly\t(2) Salaried \t(3) Commissioned");
-				employee.setType(input.nextInt());
 				
 				databaseConnection.addEmployee(employee);
 				break;
@@ -60,15 +58,14 @@ public class Main {
 				break;
 				
 			case 4:	
+				Timecard timecard = new Timecard();
 				
 				do {
 					System.out.println("Informe o ID do empregado horista: ");
 					id = input.nextInt();
-				} while ((!databaseConnection.employeeExists(id)) && (!databaseConnection.isHourly(id)));
+				} while ((!databaseConnection.employeeExists(id)));
 
 				timecard.setId(id);
-				
-				
 				
 				do {
 					System.out.println("Informe se o ponto é de entrada (1) ou saída (2): ");
@@ -87,6 +84,13 @@ public class Main {
 				// System.out.println(date);
 				
 				databaseConnection.addTimecard(timecard);
+				
+			case 5:
+				
+				for (Timecard timecardIterator : databaseConnection.getTimecards()) {
+					System.out.println(timecardIterator.toString());
+				}
+				break;
 				
 			default:
 				break;

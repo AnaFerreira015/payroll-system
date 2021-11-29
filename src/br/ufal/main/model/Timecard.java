@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Timecard {
 	private Date date;
-	private int id, type;
+	private int idEmployee, type;
 	
 	public Date getDate() {
 		return date;
@@ -13,16 +13,21 @@ public class Timecard {
 		this.date = date;
 	}
 	public int getId() {
-		return id;
+		return idEmployee;
 	}
 	public void setId(int id) {
-		this.id = id;
+		this.idEmployee = id;
 	}
 	public int getType() {
 		return type;
 	}
 	public void setType(int type) {
 		this.type = type;
+	}
+	
+	@Override
+	public String toString() {
+		return "Date: " + date + "\nID: " + idEmployee + "\nType: " + type;
 	}
 
 }
