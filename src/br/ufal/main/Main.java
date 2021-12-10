@@ -4,7 +4,10 @@ import java.util.Date;
 import java.util.Scanner;
 
 import br.ufal.main.database.DatabaseConnection;
+import br.ufal.main.model.Commissioned;
 import br.ufal.main.model.Employee;
+import br.ufal.main.model.Hourly;
+import br.ufal.main.model.Salaried;
 import br.ufal.main.model.Timecard;
 
 public class Main {
@@ -23,11 +26,20 @@ public class Main {
 			System.out.println("\t2. Listar empregados");
 			System.out.println("\t3. Remover um empregado");
 			System.out.println("\t4. Lançar Cartão de Ponto");
+			System.out.println("\t5. Exibir Cartões de Ponto");
+			System.out.println("\t6. Mostrar salário");
 			option = input.nextInt();
 			
 			switch (option) {
 			case 1:	
-				Employee employee = new Employee();
+				System.out.println("Informe o tipo do empregado: ");
+				System.out.println("\t(1) Hourly\t(2) Salaried \t(3) Commissioned");
+				int typeEmployee = input.nextInt();
+				
+				Employee employee = null;
+				if(typeEmployee == 1) employee = new Hourly();
+				if(typeEmployee == 2) employee = new Salaried();
+				if(typeEmployee == 3) employee = new Commissioned();
 				
 				System.out.println("Informe o nome do empregado: ");
 				employee.setName(input.next());
@@ -35,8 +47,6 @@ public class Main {
 				System.out.println("Informe o endereço: ");
 				employee.setAddress(input.next());
 				
-				System.out.println("Informe o tipo do empregado: ");
-				System.out.println("\t(1) Hourly\t(2) Salaried \t(3) Commissioned");
 				
 				databaseConnection.addEmployee(employee);
 				break;
@@ -67,17 +77,12 @@ public class Main {
 
 				timecard.setId(id);
 				
-				do {
-					System.out.println("Informe se o ponto é de entrada (1) ou saída (2): ");
-					pointType = input.nextInt();
-					
-					if (((!databaseConnection.hasPointRegistered(id)) && (pointType != 1))) {
-						System.out.println("É necessário um ponto de entrada antes de registrar o ponto de saída!");
-					}
-				} while ((pointType != 1) && (pointType != 2));
-				
-				timecard.setType(pointType);
-				
+				if ((databaseConnection.getTimecards(id).size() % 2) == 0) {
+					timecard.setType(1);
+				} else {
+					timecard.setType(2);
+				}
+								
 				// DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 				Date date = new Date();
 				timecard.setDate(date);
@@ -92,6 +97,13 @@ public class Main {
 				}
 				break;
 				
+			case 6: 
+				System.out.println("Informe o ID do funcionário: ");
+				int idEmployee = input.nextInt();
+				
+				double result = ((Hourly) databaseConnection.getEmployee(idEmployee)).calculateSalary(databaseConnection.getTimecards());
+				System.out.println("Resultado do salário: " + result);
+				break;
 			default:
 				break;
 			}

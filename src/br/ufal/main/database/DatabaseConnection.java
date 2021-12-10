@@ -58,4 +58,25 @@ public class DatabaseConnection {
 	public ArrayList<Timecard> getTimecards() {
 		return this.timecards;
 	}
+	
+	public ArrayList<Timecard> getTimecards(int id) {
+		ArrayList<Timecard> timecardsEmployee = new ArrayList<Timecard>();
+		
+		for (Timecard timecard : timecards) {
+			if (timecard.getId() == id) {
+				timecardsEmployee.add(timecard);
+			}
+		}
+		
+		return timecardsEmployee;
+	}
+	
+	public Employee getEmployee(int id) {
+		for (Employee employee : employees) {
+			if(employee.getId() == id) {
+				return employee;
+			} 
+		}
+		return null;
+	}
 }
