@@ -1,6 +1,8 @@
 package br.ufal.main.database;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 import br.ufal.main.model.Employee;
@@ -78,5 +80,13 @@ public class DatabaseConnection {
 			} 
 		}
 		return null;
+	}
+	
+	public boolean isFriday(Date dateToday) {
+		Calendar calendar = Calendar.getInstance();
+		
+		calendar.setTime(dateToday);
+		
+		return (calendar.get(Calendar.DAY_OF_WEEK) == 6);
 	}
 }

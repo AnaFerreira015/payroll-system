@@ -15,14 +15,6 @@ public class Hourly extends Employee {
 		this.salary = salary;
 	}
 	
-	public boolean isFriday(Date dateToday) {
-		Calendar calendar = Calendar.getInstance();
-		
-		calendar.setTime(dateToday);
-		
-		return (calendar.get(Calendar.DAY_OF_WEEK) == 6);
-	}
-	
 	public double calculateSalary(ArrayList<Timecard> timecards) {
 		Date entryTimecard = null;
 		double salary = 0;
