@@ -4,6 +4,7 @@ public class Employee {
 
 	private String name, address; 
 	private int id;
+	private Schedule schedule;
 	
 	public String getName() {
 		return name;

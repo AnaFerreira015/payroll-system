@@ -36,9 +36,7 @@ public class Commissioned extends Employee {
 		System.out.println("entrou na calculateCommission");
 		
 		for (Sale sale : sales) {
-			System.out.println(sale.getId() + "==" + this.getId());
 			if(sale.getId() == this.getId()) {
-				System.out.println(sale.getSaleValue() + " * " + this.commissionPercentage);
 				commission += sale.getSaleValue() * this.commissionPercentage;
 			}
 		}
